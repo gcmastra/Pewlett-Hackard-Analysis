@@ -279,3 +279,113 @@ ORDER BY ce.emp_no;
 -- Jungsoon & Reuven are the next two who have been in more than one dept so we need to know which is the current dept
 -- turns out the course material anticipated this also (after I thoought of it) and these will be in the next section 
  
+-- DATE 20210814 - review to prepare for Unit 7 challenge
+-- Sec 7.3.5 in the salaries table if you sort by to_date then you see the most recent record first, so if you then select on emp_no
+-- if you select on emp_no and there is more than one salary record the current salary should be first in the list 
+
+--  REVIEW 
+
+--  test section 7.3.5
+
+SELECT e.emp_no,
+    e.first_name,
+e.last_name,
+    e.gender,
+    s.salary,
+    de.to_date
+--	INTO emp_info
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+     AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+	 AND (de.to_date = '9999-01-01');
+
+-- notes - the to_date = '9999-01-01  means they are a current employee
+
+SELECT ce.emp_no,
+ce.first_name,
+ce.last_name,
+d.dept_name
+-- INTO dept_info
+FROM current_emp as ce
+INNER JOIN dept_emp AS de
+ON (ce.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no);
+
+-- when we run this query we get multiple managers for a dept or multiple depts for a manager
+-- that just means the employee switched depts in the past but how do you know for sure which dept is the current dept? 
+-- this is where tailored lists are going to come in to play or so they say in section 7.3.6
+
+
+SELECT e.emp_no,
+    e.first_name,
+e.last_name,
+    e.gender,
+    s.salary,
+    de.to_date
+--	INTO emp_info
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+     AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+	 AND (de.to_date = '9999-01-01')
+	 AND (de.dept_no = 'd007');
+
+
+-- I took the old custom list and tailored it to only show dept = d007 which I looked up to see it is sales
+-- but if you really wanted to do it right you would do a JOIN between dept_emp and department so you could 
+-- query based on the name of the department rather than the depy code which is a text field btw
+
+SELECT e.emp_no,
+    e.first_name,
+	e.last_name,
+	dpt.dept_name
+    -- e.gender,
+    -- s.salary,
+    -- de.to_date
+--	INTO emp_info
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+INNER JOIN departments as dpt
+ON (de.dept_no = dpt.dept_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+     AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+	 AND (de.to_date = '9999-01-01')
+	 AND (de.dept_no = 'd007');
+
+-- this is the answer to the skill drill for the sales team
+-- added another inner join to show the dpt.dept_name from the de.dept_no
+
+SELECT e.emp_no,
+    e.first_name,
+	e.last_name,
+	dpt.dept_name
+    -- e.gender,
+    -- s.salary,
+    -- de.to_date
+--	INTO emp_info
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+INNER JOIN departments as dpt
+ON (de.dept_no = dpt.dept_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+     AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+	 AND (de.to_date = '9999-01-01')
+	 AND (dpt.dept_name = 'Sales' OR dpt.dept_name = 'Development' );
+
+-- second skill drill was to add the dpt.dept_name and have it match two possible names only
+
+

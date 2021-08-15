@@ -1,3 +1,8 @@
+# additing more files to ignore on date 20210812
+config.py
+# some of the data files could get large so its better not to copy them to GitHub
+Data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -60,6 +65,8 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+
+
 
 # Flask stuff:
 instance/
