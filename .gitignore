@@ -1,6 +1,8 @@
 # additing more files to ignore on date 20210812
 config.py
+Employee_Challenge_starter_code.sql
 # some of the data files could get large so its better not to copy them to GitHub
+# except for three pr four files required to submit in the assignment
 Data/
 
 # Byte-compiled / optimized / DLL files
