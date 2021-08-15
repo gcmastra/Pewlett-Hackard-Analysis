@@ -3,7 +3,7 @@
 
 The following queries and data files submitted with this assignment are found in the following folders/files:
 <UL><LI><A href="https://github.com/gcmastra/Pewlett-Hackard-Analysis/blob/e06cab34405b02c079313fa58319266be5d19d75/Queries/Employee_Database_Challenge.sql" target="_null">This file contains the queries used to create the two deliverables</A></LI>
-  <LI>These four files are found in the Data folder on Friday in France</LI>
+  <LI>These four files are found in the Data folder: </LI>
   <UL>
   <LI>retirement_titles.csv</LI>
     <LI>retiring_titles.csv</LI>
@@ -23,11 +23,12 @@ The following queries and data files submitted with this assignment are found in
   
   One strategy for the way to retain some personnel who are eligible to retire is to repurpose their job title to become mentors to other employees
   within their same department  This strategy could help with retention while also helping junior employees with mapping their career paths.
-  The file "mentoring_eligibility" contains the names and titles of 1549 employees 
+  
+  The file "mentoring_eligibility" contains the names and titles of 1549 employees who are the same age and are currently exactly 10 years away from retirement.  
+  Here is a sample of what the table looks like . . . 
 <br>  ![image](https://user-images.githubusercontent.com/86205000/129492658-a0802dec-0514-4ff0-bad8-b5b3273fb520.png)
  <br>
-
-
+ Management requested we identify a group of employees who would be possible particpants in a mentoring pilot program.  Selecting this group by age gives us a slice of the workforce who will be eligible for retirement at around the same time.  With a median length of employment of 28.46 years with the company, this group represents considerable intellectual capital and experience.  Participation in a pilot study, in addition to the obvious goal of testing the new mentoring program, could also improve the retention of this group of experienced employees because they might see their role in the company as being valued by management, and if the pilot program is successful, might want to become mentors themselves when the program expands. 
 
 ### Technical Notes
 In addition to the deliverable report here are a few more issues I encountered while working on Module 7 course materials
